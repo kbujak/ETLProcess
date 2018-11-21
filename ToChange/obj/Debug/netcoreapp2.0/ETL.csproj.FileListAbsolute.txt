@@ -1,0 +1,11 @@
+/Users/Booyac/Projects/ToChange/ToChange/bin/Debug/netcoreapp2.0/ETL.deps.json
+/Users/Booyac/Projects/ToChange/ToChange/bin/Debug/netcoreapp2.0/ETL.runtimeconfig.json
+/Users/Booyac/Projects/ToChange/ToChange/bin/Debug/netcoreapp2.0/ETL.runtimeconfig.dev.json
+/Users/Booyac/Projects/ToChange/ToChange/bin/Debug/netcoreapp2.0/ETL.dll
+/Users/Booyac/Projects/ToChange/ToChange/bin/Debug/netcoreapp2.0/ETL.pdb
+/Users/Booyac/Projects/ToChange/ToChange/obj/Debug/netcoreapp2.0/ETL.csproj.CoreCompileInputs.cache
+/Users/Booyac/Projects/ToChange/ToChange/obj/Debug/netcoreapp2.0/ETL.AssemblyInfoInputs.cache
+/Users/Booyac/Projects/ToChange/ToChange/obj/Debug/netcoreapp2.0/ETL.AssemblyInfo.cs
+/Users/Booyac/Projects/ToChange/ToChange/obj/Debug/netcoreapp2.0/ETL.dll
+/Users/Booyac/Projects/ToChange/ToChange/obj/Debug/netcoreapp2.0/ETL.pdb
+/Users/Booyac/Projects/ToChange/ToChange/obj/Debug/netcoreapp2.0/ETL.csprojAssemblyReference.cache

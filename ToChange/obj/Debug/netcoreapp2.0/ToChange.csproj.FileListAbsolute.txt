@@ -1,0 +1,11 @@
+/Users/Booyac/Projects/ToChange/ToChange/bin/Debug/netcoreapp2.0/ToChange.deps.json
+/Users/Booyac/Projects/ToChange/ToChange/bin/Debug/netcoreapp2.0/ToChange.runtimeconfig.json
+/Users/Booyac/Projects/ToChange/ToChange/bin/Debug/netcoreapp2.0/ToChange.runtimeconfig.dev.json
+/Users/Booyac/Projects/ToChange/ToChange/bin/Debug/netcoreapp2.0/ToChange.dll
+/Users/Booyac/Projects/ToChange/ToChange/bin/Debug/netcoreapp2.0/ToChange.pdb
+/Users/Booyac/Projects/ToChange/ToChange/obj/Debug/netcoreapp2.0/ToChange.csprojAssemblyReference.cache
+/Users/Booyac/Projects/ToChange/ToChange/obj/Debug/netcoreapp2.0/ToChange.csproj.CoreCompileInputs.cache
+/Users/Booyac/Projects/ToChange/ToChange/obj/Debug/netcoreapp2.0/ToChange.AssemblyInfoInputs.cache
+/Users/Booyac/Projects/ToChange/ToChange/obj/Debug/netcoreapp2.0/ToChange.AssemblyInfo.cs
+/Users/Booyac/Projects/ToChange/ToChange/obj/Debug/netcoreapp2.0/ToChange.dll
+/Users/Booyac/Projects/ToChange/ToChange/obj/Debug/netcoreapp2.0/ToChange.pdb
