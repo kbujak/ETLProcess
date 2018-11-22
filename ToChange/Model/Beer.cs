@@ -13,5 +13,7 @@
         public string Country { get; set; }
 
         public double Rating { get; set; }
+
+        public string Url { get; set; }
     }    
 }
