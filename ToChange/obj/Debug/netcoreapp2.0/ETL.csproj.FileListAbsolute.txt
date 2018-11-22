@@ -9,3 +9,14 @@
 /Users/Booyac/Projects/ToChange/ToChange/obj/Debug/netcoreapp2.0/ETL.dll
 /Users/Booyac/Projects/ToChange/ToChange/obj/Debug/netcoreapp2.0/ETL.pdb
 /Users/Booyac/Projects/ToChange/ToChange/obj/Debug/netcoreapp2.0/ETL.csprojAssemblyReference.cache
+C:\Users\mjbor\source\repos\ETL\ETLProcess\ToChange\bin\Debug\netcoreapp2.0\ETL.deps.json
+C:\Users\mjbor\source\repos\ETL\ETLProcess\ToChange\bin\Debug\netcoreapp2.0\ETL.runtimeconfig.json
+C:\Users\mjbor\source\repos\ETL\ETLProcess\ToChange\bin\Debug\netcoreapp2.0\ETL.runtimeconfig.dev.json
+C:\Users\mjbor\source\repos\ETL\ETLProcess\ToChange\bin\Debug\netcoreapp2.0\ETL.dll
+C:\Users\mjbor\source\repos\ETL\ETLProcess\ToChange\bin\Debug\netcoreapp2.0\ETL.pdb
+C:\Users\mjbor\source\repos\ETL\ETLProcess\ToChange\obj\Debug\netcoreapp2.0\ETL.csprojAssemblyReference.cache
+C:\Users\mjbor\source\repos\ETL\ETLProcess\ToChange\obj\Debug\netcoreapp2.0\ETL.csproj.CoreCompileInputs.cache
+C:\Users\mjbor\source\repos\ETL\ETLProcess\ToChange\obj\Debug\netcoreapp2.0\ETL.AssemblyInfoInputs.cache
+C:\Users\mjbor\source\repos\ETL\ETLProcess\ToChange\obj\Debug\netcoreapp2.0\ETL.AssemblyInfo.cs
+C:\Users\mjbor\source\repos\ETL\ETLProcess\ToChange\obj\Debug\netcoreapp2.0\ETL.dll
+C:\Users\mjbor\source\repos\ETL\ETLProcess\ToChange\obj\Debug\netcoreapp2.0\ETL.pdb

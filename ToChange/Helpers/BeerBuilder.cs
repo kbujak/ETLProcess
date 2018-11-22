@@ -49,6 +49,12 @@ namespace ETL.Helpers
             return this;
         }
 
+        public BeerBuilder WithUrl(string urlString)
+        {
+            beer.Url = urlString;
+            return this;
+        }
+
         public Beer Create()
         {
             return beer;
