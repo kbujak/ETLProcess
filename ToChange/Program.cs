@@ -25,7 +25,7 @@ namespace ETL.Helpers
 
             var c = new CommentsWebsiteCrawler(beers);
             c.startCrawlerAsync().Wait();
-            Console.WriteLine(c.comments.Count());
+            Console.WriteLine(c.GetCommentResults().GuestComments.Count);
 
 
             Console.Read();

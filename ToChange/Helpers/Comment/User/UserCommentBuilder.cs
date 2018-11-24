@@ -4,42 +4,42 @@ using ETL.Model;
 
 namespace ETL.Helpers
 {
-    public class CommentBuilder
+    public class UserCommentBuilder
     {
-        private readonly Comment comment;
+        private readonly UserComment comment;
 
-        public CommentBuilder()
+        public UserCommentBuilder()
         {
-            comment = new Comment();
+            comment = new UserComment();
         }
 
-        public CommentBuilder WithOpinion(string opinion)
+        public UserCommentBuilder WithOpinion(string opinion)
         {
             comment.Opinion = opinion;
             return this;
         }
 
-        public CommentBuilder WithDate(string date)
+        public UserCommentBuilder WithDate(string date)
         {
             comment.Date = date;
             return this;
         }
 
-        public CommentBuilder WithRating(int rating)
+        public UserCommentBuilder WithRating(int rating)
         {
             comment.Rating = rating;
             return this;
         }
 
        
-        public CommentBuilder WithUsername(string username)
+        public UserCommentBuilder WithUsername(string username)
         {
             comment.Username = username;
             return this;
         }
         
 
-        public Comment Create()
+        public UserComment Create()
         {
             return comment;
         }
