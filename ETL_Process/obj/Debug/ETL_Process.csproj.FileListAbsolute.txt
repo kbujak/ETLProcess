@@ -1,0 +1,13 @@
+C:\Projekty\ETL_Proces\ETL_Process\obj\Debug\ETL_Process.csprojResolveAssemblyReference.cache
+C:\Projekty\ETL_Proces\ETL_Process\obj\Debug\ETL_Process.Properties.Resources.resources
+C:\Projekty\ETL_Proces\ETL_Process\obj\Debug\ETL_Process.csproj.GenerateResource.Cache
+C:\Projekty\ETL_Proces\ETL_Process\obj\Debug\ETL_Process.csproj.CoreCompileInputs.cache
+C:\Projekty\ETL_Proces\ETL_Process\bin\Debug\ETL_Process.exe.config
+C:\Projekty\ETL_Proces\ETL_Process\bin\Debug\ETL_Process.exe
+C:\Projekty\ETL_Proces\ETL_Process\bin\Debug\ETL_Process.pdb
+C:\Projekty\ETL_Proces\ETL_Process\bin\Debug\HtmlAgilityPack.dll
+C:\Projekty\ETL_Proces\ETL_Process\bin\Debug\HtmlAgilityPack.pdb
+C:\Projekty\ETL_Proces\ETL_Process\bin\Debug\HtmlAgilityPack.xml
+C:\Projekty\ETL_Proces\ETL_Process\obj\Debug\ETL_Process.exe
+C:\Projekty\ETL_Proces\ETL_Process\obj\Debug\ETL_Process.pdb
+C:\Projekty\ETL_Proces\ETL_Process\obj\Debug\ETL_Process.ETLUserForm.resources
