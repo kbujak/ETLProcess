@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controler\ETLControler.cs" />
     <Compile Include="Crawlers\BeerRankingWebsiteCrawler.cs" />
     <Compile Include="Crawlers\CommentsWebsiteCrawler.cs" />
     <Compile Include="View\ETLUserForm.cs">

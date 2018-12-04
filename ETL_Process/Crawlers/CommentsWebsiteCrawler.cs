@@ -12,6 +12,10 @@ namespace ETL
 {
     public class CommentsWebsiteCrawler
     {
+        public CommentsWebsiteCrawler()
+        {
+        }
+
         public CommentsWebsiteCrawler(IList<Beer> beerList)
         {
             this.beerList = beerList;

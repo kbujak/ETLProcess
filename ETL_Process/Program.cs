@@ -22,12 +22,12 @@ namespace ETL_Process
             Application.Run(new ETLUserForm());
 
 
-            /*
+         /*
      var m = new BeerRankingWebsiteCrawler();
      m.startCrawlerAsync().Wait();
      Console.WriteLine(m.beerList.Count());
      */
-
+     /*
             IList<Beer> beers = new List<Beer>();
             var beerBuilder = new BeerBuilder();
             beers.Add(beerBuilder
@@ -37,7 +37,11 @@ namespace ETL_Process
 
             var c = new CommentsWebsiteCrawler(beers);
             c.startCrawlerAsync().Wait();
-            Console.WriteLine(c.GetCommentResults().GuestComments.Count);
+            Console.WriteLine(c.GetCommentResults().GuestComments.Count);*/
+
+
+
+
 
 
             Console.Read();
