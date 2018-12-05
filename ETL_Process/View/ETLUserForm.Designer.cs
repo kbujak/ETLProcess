@@ -27,8 +27,6 @@ namespace ETL_Process
 
         #region Windows Form Designer generated code
 
-        [DllImport("user32.dll")]
-        static extern bool HideCaret(IntPtr hWnd);
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -38,7 +36,7 @@ namespace ETL_Process
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ETLUserForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.extractButton = new System.Windows.Forms.Button();
             this.transformButton = new System.Windows.Forms.Button();
             this.loadButton = new System.Windows.Forms.Button();
             this.ETLButton = new System.Windows.Forms.Button();
@@ -69,7 +67,7 @@ namespace ETL_Process
             this.tableLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.button1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.extractButton, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.transformButton, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.loadButton, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.ETLButton, 0, 3);
@@ -89,29 +87,28 @@ namespace ETL_Process
             this.tableLayoutPanel1.Size = new System.Drawing.Size(210, 366);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // button1
+            // extractButton
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Location = new System.Drawing.Point(10, 10);
-            this.button1.Margin = new System.Windows.Forms.Padding(10);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(190, 48);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "EXTRACT";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.extractButton.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.extractButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.extractButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.extractButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.extractButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.extractButton.Location = new System.Drawing.Point(10, 10);
+            this.extractButton.Margin = new System.Windows.Forms.Padding(10);
+            this.extractButton.Name = "extractButton";
+            this.extractButton.Size = new System.Drawing.Size(190, 48);
+            this.extractButton.TabIndex = 0;
+            this.extractButton.Text = "EXTRACT";
+            this.extractButton.UseVisualStyleBackColor = false;
+            this.extractButton.Click += new System.EventHandler(this.extractButton_Click);
             // 
             // transformButton
             // 
-            this.transformButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.transformButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.transformButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.transformButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.transformButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.transformButton.ForeColor = System.Drawing.SystemColors.InfoText;
             this.transformButton.Location = new System.Drawing.Point(10, 78);
             this.transformButton.Margin = new System.Windows.Forms.Padding(10);
@@ -120,6 +117,7 @@ namespace ETL_Process
             this.transformButton.TabIndex = 1;
             this.transformButton.Text = "TRANSFORM";
             this.transformButton.UseVisualStyleBackColor = false;
+            this.transformButton.Click += new System.EventHandler(this.transformButton_Click);
             // 
             // loadButton
             // 
@@ -136,6 +134,7 @@ namespace ETL_Process
             this.loadButton.TabIndex = 2;
             this.loadButton.Text = "LOAD";
             this.loadButton.UseVisualStyleBackColor = false;
+            this.loadButton.Click += new System.EventHandler(this.loadButton_Click);
             // 
             // ETLButton
             // 
@@ -152,6 +151,7 @@ namespace ETL_Process
             this.ETLButton.TabIndex = 3;
             this.ETLButton.Text = "ETL";
             this.ETLButton.UseVisualStyleBackColor = false;
+            this.ETLButton.Click += new System.EventHandler(this.ETLButton_Click);
             // 
             // clearDBbutton
             // 
@@ -168,6 +168,7 @@ namespace ETL_Process
             this.clearDBbutton.TabIndex = 4;
             this.clearDBbutton.Text = "CLEAR DATABASE";
             this.clearDBbutton.UseVisualStyleBackColor = false;
+            this.clearDBbutton.Click += new System.EventHandler(this.clearDBbutton_Click);
             // 
             // saveToCSVButton
             // 
@@ -182,6 +183,7 @@ namespace ETL_Process
             this.saveToCSVButton.TabIndex = 5;
             this.saveToCSVButton.Text = "SAVE TO .CSV FILE";
             this.saveToCSVButton.UseVisualStyleBackColor = false;
+            this.saveToCSVButton.Click += new System.EventHandler(this.saveToCSVButton_Click);
             // 
             // panel2
             // 
@@ -252,7 +254,7 @@ namespace ETL_Process
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button extractButton;
         private System.Windows.Forms.Button transformButton;
         private System.Windows.Forms.Button loadButton;
         private System.Windows.Forms.Button ETLButton;
