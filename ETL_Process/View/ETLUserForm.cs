@@ -34,12 +34,19 @@ namespace ETL_Process
             this.textArea.Text = "\r\nWelcome in beer rating parser. \r\n\r\nChoose option from menu...";
         }
 
-        private void extractButton_Click(object sender, EventArgs e)
+        private async void extractButton_Click(object sender, EventArgs e)
         {
             try
             {
-                var numberOfExtractedBeers = eTLControler.Extract();
-                this.textArea.Text = "\r\nNumber of exctracted beers: \r\n\r\n" + numberOfExtractedBeers;
+
+                this.textArea.Text = "\r\nExtracting beers...";
+                await eTLControler.ExtractBeers();
+                this.textArea.Text = "\r\nNumber of exctracted beers: \r\n\r\n" + eTLControler.getAllBeers().Count;
+
+                this.textArea.Text = "\r\nExtracting comments...";
+                await eTLControler.ExtractComments();
+                var numberOfComments = eTLControler.GetCommentResult().GuestComments.Count + eTLControler.GetCommentResult().UserComments.Count;
+                this.textArea.Text = "\r\nNumber of exctracted comments: \r\n\r\n" + numberOfComments;
 
                 this.transformButton.Cursor = Cursors.Arrow;
                 this.transformButton.ForeColor = Color.Black;
@@ -94,13 +101,20 @@ namespace ETL_Process
 
         }
 
-        private void ETLButton_Click(object sender, EventArgs e)
+        private async void ETLButton_Click(object sender, EventArgs e)
         {
             try
             {
                 cleanTransformAndLoad();
 
-                var numberOfBeers = eTLControler.Extract();
+                this.textArea.Text = "\r\nExtracting beers...";
+                await eTLControler.ExtractBeers();
+                this.textArea.Text = "\r\nNumber of exctracted beers: \r\n\r\n" + eTLControler.getAllBeers().Count;
+
+                this.textArea.Text = "\r\nExtracting comments...";
+                await eTLControler.ExtractComments();
+                var numberOfComments = eTLControler.GetCommentResult().GuestComments.Count + eTLControler.GetCommentResult().UserComments.Count;
+                this.textArea.Text = "\r\nNumber of exctracted comments: \r\n\r\n" + numberOfComments;
                 if (eTLControler.Transform() && eTLControler.Load())
                 {
                     this.textArea.Text = "\r\n\r\n... ETL process successfuly finished ...";

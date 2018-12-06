@@ -13,7 +13,7 @@ namespace ETL
     public class BeerRankingWebsiteCrawler
     {
         private const string urlString = "https://ocen-piwo.pl/najwyzej-oceniane-piwa-";
-        private const int pagesNumber = 10;
+        private const int pagesNumber = 1;
         private IReadOnlyList<string> urls;
         public IList<Beer> beerList = new List<Beer>();
 
@@ -24,13 +24,14 @@ namespace ETL
             {
                 await GetInformationAboutDevice(url);
             }
+            
         }
 
         private IReadOnlyList<string> makeUrls(int pageCount)
         {
             IEnumerable<int> range = Enumerable.Range(1, pageCount);
             return range
-                .Select(i => $"{urlString}{(i-1) * 10}")
+                .Select(i => $"{urlString}{(i-1) * 5}")
                 .ToArray();
         }
 

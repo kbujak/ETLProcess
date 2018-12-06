@@ -1,6 +1,7 @@
 ﻿using ETL;
 using ETL.Helpers;
 using ETL.Model;
+using ETL_Process.Csv;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,25 +14,39 @@ namespace ETL_Process.Controler
     {
         private BeerRankingWebsiteCrawler beerRankingCrawler;
         private CommentsWebsiteCrawler commentWebsiteCrawler;
+        private BeerCsvWriter beerCsvWriter;
+
+
 
         private IList<Beer> Beers { get; set; }
+        private CommentResult CommentResult { get; set; }
 
         internal ETLControler()
         {
             this.beerRankingCrawler = new BeerRankingWebsiteCrawler();
             this.commentWebsiteCrawler = new CommentsWebsiteCrawler();
+            this.beerCsvWriter = new BeerCsvWriter();
             this.Beers = new List<Beer>();
         }
 
         //extract raw data
-        internal int Extract()
+        internal async 
+        Task ExtractBeers()
+        { 
+            var m = new BeerRankingWebsiteCrawler();
+            await m.startCrawlerAsync();
+            this.Beers = m.beerList;
+        }
+
+        internal async
+        Task ExtractComments()
         {
-            //IList<Beer> beers = new List<Beer>();
-            var beerBuilder = new BeerBuilder();
-            Beers.Add(beerBuilder
-                .WithUrl("https://ocen-piwo.pl/pinta-imperator-baltycki-sherry-oloroso-barrel-aged-s1-n7239")
-                .Create());
-            return Beers.Count();
+            //something breaks on later beers
+            //TO DO fix it xd
+            var firstTwoBeers = new List<Beer> { Beers.ElementAt(0), Beers.ElementAt(1) };
+            var m = new CommentsWebsiteCrawler(firstTwoBeers);
+            await m.startCrawlerAsync();
+            this.CommentResult = m.GetCommentResults();
         }
 
         //transform data to objects 
@@ -50,6 +65,10 @@ namespace ETL_Process.Controler
         //save data to csv file
         internal bool saveDataToCSVFile()
         {
+            beerCsvWriter.WriteBeersToCsv(getAllBeers());
+            beerCsvWriter.WriteGuestCommentsToCsv(GetCommentResult().GuestComments);
+            beerCsvWriter.WriteUserCommentsToCsv(GetCommentResult().UserComments);
+
             return true;
         }
 
@@ -63,6 +82,11 @@ namespace ETL_Process.Controler
         internal IList<Beer> getAllBeers()  
         {
             return Beers;
+        }
+
+        internal CommentResult GetCommentResult()
+        {
+            return CommentResult;
         }
     }
 }
