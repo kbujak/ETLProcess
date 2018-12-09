@@ -24,6 +24,8 @@ namespace ETL
             {
                 await GetInformationAboutDevice(url);
             }
+
+            saveDataToDB();
         }
 
         private IReadOnlyList<string> makeUrls(int pageCount)
@@ -47,6 +49,11 @@ namespace ETL
             {
                 beerList.Add(beerMapper.MapFromHTMLNode(node));
             }
+        }
+
+        private bool saveDataToDB()
+        {
+
         }
     }
 }

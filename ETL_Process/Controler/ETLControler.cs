@@ -37,7 +37,9 @@ namespace ETL_Process.Controler
         //transform data to objects 
         internal bool Transform()
         {
-            
+            var c = new CommentsWebsiteCrawler(Beers);
+            c.startCrawlerAsync().Wait();
+            Console.WriteLine(c.GetCommentResults().GuestComments.Count);
             return true;
         }
 
