@@ -23,7 +23,6 @@ namespace ETL
 
 
         private const string urlString = "https://ocen-piwo.pl/";
-        private const int beersNumber = 10;
         private IList<Beer> beerList;
         private IList<GuestComment> guestComments = new List<GuestComment>();
         private IList<UserComment> userComments = new List<UserComment>();
@@ -32,7 +31,8 @@ namespace ETL
         {
             foreach (var beer in beerList)
             {
-                await GetComments(beer.Url);
+                String url = urlString + beer.Url;
+                await GetComments(url);
             }
         }
 
