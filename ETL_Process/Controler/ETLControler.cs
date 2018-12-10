@@ -41,10 +41,7 @@ namespace ETL_Process.Controler
         internal async
         Task ExtractComments()
         {
-            //something breaks on later beers
-            //TO DO fix it xd
-            var firstTwoBeers = new List<Beer> { Beers.ElementAt(0), Beers.ElementAt(1) };
-            var m = new CommentsWebsiteCrawler(firstTwoBeers);
+            var m = new CommentsWebsiteCrawler(Beers);
             await m.startCrawlerAsync();
             this.CommentResult = m.GetCommentResults();
         }

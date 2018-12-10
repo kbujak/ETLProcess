@@ -18,7 +18,10 @@ namespace ETL.Helpers
             var rowNode = node.Descendants("div").SingleOrDefault(n => n.GetAttributeValue("class", "").Equals("comment"));
             var opinion = rowNode.InnerHtml.ToString();
             var startIndex = opinion.IndexOf(divClosure);
-        
+
+            if (divClosure.Length <= 0 || startIndex == -1)
+                return "";
+                
             return  opinion.Substring(startIndex + divClosure.Length);
         }
 

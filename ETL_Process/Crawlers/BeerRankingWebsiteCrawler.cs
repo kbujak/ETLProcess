@@ -13,7 +13,7 @@ namespace ETL
     public class BeerRankingWebsiteCrawler
     {
         private const string urlString = "https://ocen-piwo.pl/najwyzej-oceniane-piwa-";
-        private const int pagesNumber = 1;
+        private const int pagesNumber = 5;
         private IReadOnlyList<string> urls;
         public IList<Beer> beerList = new List<Beer>();
 

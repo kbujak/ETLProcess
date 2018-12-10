@@ -20,13 +20,24 @@ namespace ETL.Helpers
             var startIndex = text.IndexOf("</div>");
             var endIndex = text.IndexOf("<div style='text-align:right;");
             var rateNode = rowNode.Descendants("div").SingleOrDefault(n => n.GetAttributeValue("style", "").Equals("text-align:right;"));
+            if (startIndex == -1 || endIndex == -1)
+                return "";
+
             return text.Substring(startIndex + 6, endIndex);
+
         }
 
-        private string ParseUserRating(HtmlNode node)
+        private int? ParseUserRating(HtmlNode node)
         {
             var rateNode = GetRowNode(node).Descendants("div").SingleOrDefault(n => n.GetAttributeValue("style", "").Equals("text-align:right;"));
-            return rateNode.Descendants("div").FirstOrDefault().Descendants("font").FirstOrDefault().InnerText;
+            if (rateNode == null)
+                return null;
+
+            string rating = rateNode.Descendants("div").FirstOrDefault().Descendants("font").FirstOrDefault().InnerText;
+            if (rating == null)
+                return null;
+
+            return int.Parse(rating);
         }
 
         private string ParseUserName(HtmlNode node)
@@ -49,11 +60,12 @@ namespace ETL.Helpers
 
             return commentBuilder
                 .WithUsername(user)
-                .WithRating(int.Parse(rating))
+                .WithRating(rating)
                 .WithDate(date)
                 .WithOpinion(opinion)
                 .Create();
-           
+
+
 
         }
     }
