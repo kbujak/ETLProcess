@@ -16,7 +16,6 @@ namespace ETL_Process.Csv
         public bool WriteBeersToCsv(IList<Beer> beers)
         {
             WriteToCsvFile(beers, "beers.csv");
-
             return true;
         }
 
@@ -37,6 +36,7 @@ namespace ETL_Process.Csv
         private bool WriteToCsvFile<T>(IEnumerable<T> objects, String fileName)
         {
             var path = @"./" + fileName;
+
             using (TextWriter writer = new StreamWriter(path, false, System.Text.Encoding.UTF8))
             {
                 var csv = new CsvWriter(writer);

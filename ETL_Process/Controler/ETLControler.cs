@@ -46,20 +46,19 @@ namespace ETL_Process.Controler
             commentWebsiteCrawler.beerList = Beers; //commentWebsiteCrawler.beerList = Beers; - to check if it is working
             await commentWebsiteCrawler.startCrawlerAsync();
             DatabaseHelper.saveCommentsToDatabase(commentWebsiteCrawler.GetCommentResults());
-            //this.CommentResult = commentWebsiteCrawler.GetCommentResults(); //this should be in transform/loads
+            this.CommentResult = commentWebsiteCrawler.GetCommentResults(); //this should be in transform/loads
         }
 
         //transform data to objects 
         internal async Task Transform()
         {
-          
             //Console.WriteLine(commentWebsiteCrawler.GetCommentResults().GuestComments.Count); //moved to Load
         }
 
         //save data to DB
         internal bool Load()
         {
-            Console.WriteLine(commentWebsiteCrawler.GetCommentResults().GuestComments.Count); //moved to Load
+            Console.WriteLine(commentWebsiteCrawler.GetCommentResults().GuestComments.Count); 
             return true;
         }
 

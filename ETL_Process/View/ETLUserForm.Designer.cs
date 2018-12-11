@@ -214,7 +214,6 @@ namespace ETL_Process
             // 
             this.textArea.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textArea.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.textArea.Dock = System.Windows.Forms.DockStyle.Top;
             this.textArea.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textArea.Location = new System.Drawing.Point(0, 0);
             this.textArea.Margin = new System.Windows.Forms.Padding(100);
@@ -224,6 +223,7 @@ namespace ETL_Process
             this.textArea.Size = new System.Drawing.Size(489, 324);
             this.textArea.TabIndex = 0;
             this.textArea.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textArea.Dock = DockStyle.Fill;
             // 
             // ETLUserForm
             // 

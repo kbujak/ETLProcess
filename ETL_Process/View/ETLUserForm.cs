@@ -1,4 +1,5 @@
-﻿using ETL_Process.Controler;
+﻿using ETL.Model;
+using ETL_Process.Controler;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,9 +28,9 @@ namespace ETL_Process
         private void SetStartup()
         {
             cleanTransformAndLoad();
-              this.saveToCSVButton.BackColor = Color.LightGray;
-                this.saveToCSVButton.ForeColor = Color.White;
-                this.saveToCSVButton.Enabled = false;
+            this.saveToCSVButton.BackColor = Color.LightGray;
+            this.saveToCSVButton.ForeColor = Color.White;
+            this.saveToCSVButton.Enabled = false;
 
             this.textArea.Text = "\r\nWelcome in beer rating parser. \r\n\r\nChoose option from menu...";
         }
@@ -78,6 +79,8 @@ namespace ETL_Process
                                   MessageBoxButtons.OKCancel,
                                   MessageBoxIcon.Error);
             }
+            this.saveToCSVButton.Enabled = true;
+            this.saveToCSVButton.ForeColor = Color.Black;
         }
 
         private void loadButton_Click(object sender, EventArgs e)
@@ -89,8 +92,8 @@ namespace ETL_Process
                 this.transformButton.Enabled = false;
                 this.transformButton.ForeColor = Color.White;
 
-                this.saveToCSVButton.Enabled = this.extractButton.Enabled = true;
-                this.saveToCSVButton.ForeColor = this.extractButton.ForeColor = Color.Black;
+                this.extractButton.Enabled = true;
+                this.extractButton.ForeColor = Color.Black;
 
             }
             catch
@@ -99,8 +102,9 @@ namespace ETL_Process
                                   MessageBoxButtons.OKCancel,
                                   MessageBoxIcon.Error);
             }
-            presentResult();
+            this.saveToCSVButton.ForeColor = Color.Black;
 
+            presentResult();
         }
 
         private async void ETLButton_Click(object sender, EventArgs e)
@@ -117,9 +121,12 @@ namespace ETL_Process
                 await eTLControler.ExtractComments();
                 var numberOfComments = eTLControler.GetCommentResult().GuestComments.Count + eTLControler.GetCommentResult().UserComments.Count;
                 this.textArea.Text = "\r\nNumber of exctracted comments: \r\n\r\n" + numberOfComments;
+
                 if (eTLControler.Transform().IsCompleted && eTLControler.Load())
                 {
                     this.textArea.Text = "\r\n\r\n... ETL process successfuly finished ...";
+                    this.saveToCSVButton.Enabled = true;
+                    this.saveToCSVButton.ForeColor = Color.Black;
                 }
             }
             catch
@@ -150,10 +157,12 @@ namespace ETL_Process
 
         private void clearDBbutton_Click(object sender, EventArgs e)
         {
+            this.saveToCSVButton.Enabled = false;
+            this.saveToCSVButton.ForeColor = Color.White;
             try
             {
                 cleanTransformAndLoad();
-                if(eTLControler.clearDatabase())
+                if (eTLControler.clearDatabase())
                 {
                     this.textArea.Text = "\r\n\r\n... Cleaning database process was successful ...";
                 }
@@ -168,14 +177,31 @@ namespace ETL_Process
 
         private void presentResult()
         {
+            this.textArea.Text = "RESULT: \r\n";
+            this.textArea.ScrollBars = ScrollBars.Vertical;
+            this.textArea.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             var beers = eTLControler.getAllBeers();
-            foreach(var b in beers)
+            var comments = eTLControler.GetCommentResult();
+
+            int i = 1;
+            foreach (var b in beers)
             {
-                //todo : implement view for beer objects, add possibility to save them to text(?) file
-                //punkt 12 : aplikaca powinna mieć możliwość eksportu danych ... do oddzielnych plików
-                //tekstowych dla każdej opinii/ogłoszenia/oferty
-                var beerInfo = "\r\n\r\n... "+b.Name + " " + b.Percentages + " " + b.Type + " " +b.Rating + " ...";
+                var beerInfo = "\r\n" + i + ". '" + b.Name + "', Procent: " + b.Percentages + ", Typ: " + b.Type + ", Ocena: " + b.Rating;
                 this.textArea.Text += beerInfo;
+
+                var commUser = comments.UserComments.Where(c => c.BeerHash == b.BeerHash);
+                var commGuest = comments.GuestComments.Where(c => c.BeerHash == b.BeerHash);
+
+                this.textArea.Text += "\r\n\r\nKomentarze: \n\r\n";
+
+
+                foreach (var cu in commUser)
+                {
+                    this.textArea.Text += "\t" + cu.Opinion + "\r\n\r\n";
+                }
+                this.textArea.Text += "\t - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\r\n";
+
+                i++;
             }
         }
 

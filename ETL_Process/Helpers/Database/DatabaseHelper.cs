@@ -25,8 +25,8 @@ namespace ETL_Process.Helpers.Database
                 foreach (var beer in beerList)
                 {
                     cmd.CommandText = "INSERT INTO Beer Values('" + beer.Name + "','" + beer.Type
-                        + "','" + beer.Percentages + "','" + beer.Blg + "','" + beer.Country + "','"
-                        + beer.Rating + "','" + beer.Url + "')";
+                        + "'," + beer.Percentages + "," + beer.Blg + ",'" + beer.Country + "',"
+                        + beer.Rating + ",'" + beer.Url + "','" + beer.BeerHash + "')";
                     cmd.ExecuteNonQuery();
                 }
                 conn.Close();
@@ -51,12 +51,20 @@ namespace ETL_Process.Helpers.Database
                 foreach (var userComment in commentResult.UserComments)
                 {
                     //to remove after fixing comment parsing
-                    if (userComment.Opinion.Contains('\''))
+
+                    if (!(userComment.Opinion == null) &&
+                        userComment.Opinion.Contains('\''))
+                    {
                         userComment.Opinion = userComment.Opinion.Substring(0, userComment.Opinion.IndexOf("'") - 1);
+                    }
 
                     var date = DateTime.Parse(userComment.Date).Date.ToString("yyyy-MM-dd HH:mm:ss");
+                    if(userComment.Rating == null)
+                    {
+                        userComment.Rating = 0;
+                    }
 
-                    cmd.CommandText = "INSERT INTO UserComment Values('" + userComment.Username + "','" + userComment.Rating
+                    cmd.CommandText = "INSERT INTO UserComment Values('" + userComment.Username  + "','" + userComment.Rating
                         + "','" + date + "','" + userComment.Opinion + "','" + userComment.BeerHash + "')";
                     cmd.ExecuteNonQuery();
                 }
@@ -64,8 +72,11 @@ namespace ETL_Process.Helpers.Database
                 foreach (var guestComment in commentResult.GuestComments)
                 {
                     //to remove after fixing comment parsing
-                    if (guestComment.Opinion.Contains('\''))
+                    if (!(guestComment.Opinion == null) &&
+                        guestComment.Opinion.Contains('\''))
+                    {
                         guestComment.Opinion = guestComment.Opinion.Substring(0, guestComment.Opinion.IndexOf("'") - 1);
+                    }
 
                     var date = DateTime.Parse(guestComment.Date).Date.ToString("yyyy-MM-dd HH:mm:ss");
 
