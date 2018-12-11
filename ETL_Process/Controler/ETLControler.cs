@@ -2,6 +2,7 @@
 using ETL.Helpers;
 using ETL.Model;
 using ETL_Process.Csv;
+using ETL_Process.Helpers.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +16,6 @@ namespace ETL_Process.Controler
         private BeerRankingWebsiteCrawler beerRankingCrawler;
         private CommentsWebsiteCrawler commentWebsiteCrawler;
         private BeerCsvWriter beerCsvWriter;
-
-
 
         private IList<Beer> Beers { get; set; }
         private CommentResult CommentResult { get; set; }
@@ -36,6 +35,7 @@ namespace ETL_Process.Controler
             var m = new BeerRankingWebsiteCrawler();
             await m.startCrawlerAsync();
             this.Beers = m.beerList;
+            DatabaseHelper.saveBeersToDB(this.Beers);
         }
 
         internal async
@@ -44,23 +44,23 @@ namespace ETL_Process.Controler
             //something breaks on later beers
             //TO DO fix it xd
             var firstTwoBeers = new List<Beer> { Beers.ElementAt(0), Beers.ElementAt(1) };
-            var m = new CommentsWebsiteCrawler(firstTwoBeers);
-            await m.startCrawlerAsync();
-            this.CommentResult = m.GetCommentResults();
+            commentWebsiteCrawler.beerList = firstTwoBeers; //commentWebsiteCrawler.beerList = Beers; - to check if it is working
+            await commentWebsiteCrawler.startCrawlerAsync();
+            DatabaseHelper.saveCommentsToDatabase(commentWebsiteCrawler.GetCommentResults());
+            //this.CommentResult = commentWebsiteCrawler.GetCommentResults(); //this should be in transform/loads
         }
 
         //transform data to objects 
-        internal bool Transform()
+        internal async Task Transform()
         {
-            var c = new CommentsWebsiteCrawler(Beers);
-            c.startCrawlerAsync().Wait();
-            Console.WriteLine(c.GetCommentResults().GuestComments.Count);
-            return true;
+          
+            //Console.WriteLine(commentWebsiteCrawler.GetCommentResults().GuestComments.Count); //moved to Load
         }
 
         //save data to DB
         internal bool Load()
         {
+            Console.WriteLine(commentWebsiteCrawler.GetCommentResults().GuestComments.Count); //moved to Load
             return true;
         }
 
@@ -77,7 +77,16 @@ namespace ETL_Process.Controler
         //clear database
         internal bool clearDatabase()
         {
-            return true; 
+            try
+            {
+                DatabaseHelper.ClearDB();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            return true;
         }
 
         //( ͡° ͜ʖ ͡°)
@@ -89,6 +98,11 @@ namespace ETL_Process.Controler
         internal CommentResult GetCommentResult()
         {
             return CommentResult;
+        }
+
+        internal int GetCommentsCount()
+        {
+            return commentWebsiteCrawler.GetCommentsCount();
         }
     }
 }

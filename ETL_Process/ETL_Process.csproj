@@ -73,6 +73,7 @@
     <Compile Include="Crawlers\BeerRankingWebsiteCrawler.cs" />
     <Compile Include="Crawlers\CommentsWebsiteCrawler.cs" />
     <Compile Include="Csv\BeerCsvWriter.cs" />
+    <Compile Include="Helpers\Database\DatabaseHelper.cs" />
     <Compile Include="View\ETLUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,7 +117,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Model\DB\ETLdb.mdf">

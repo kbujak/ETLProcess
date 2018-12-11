@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using ETL.Helpers;
 using ETL.Model;
+using System.Data.SqlClient;
 
 namespace ETL
 {
@@ -16,6 +17,7 @@ namespace ETL
         private const int pagesNumber = 1;
         private IReadOnlyList<string> urls;
         public IList<Beer> beerList = new List<Beer>();
+        IList<HtmlNode> nodes;
 
         public async Task startCrawlerAsync()
         {        
@@ -24,8 +26,6 @@ namespace ETL
             {
                 await GetInformationAboutDevice(url);
             }
-
-            saveDataToDB();
         }
 
         private IReadOnlyList<string> makeUrls(int pageCount)
@@ -42,18 +42,13 @@ namespace ETL
             var htmlDocument = new HtmlDocument();
             var html = await httpClient.GetStringAsync(url);
             htmlDocument.LoadHtml(html);
-            var nodes = htmlDocument.DocumentNode.Descendants("fieldset").ToList();
+            this.nodes = htmlDocument.DocumentNode.Descendants("fieldset").ToList();
 
-            var beerMapper = new BeerMapper();
-            foreach (var node in nodes)
-            {
-                beerList.Add(beerMapper.MapFromHTMLNode(node));
-            }
-        }
-
-        private bool saveDataToDB()
-        {
-
+           var beerMapper = new BeerMapper();
+           foreach (var node in nodes)
+           {
+               beerList.Add(beerMapper.MapFromHTMLNode(node));
+           }
         }
     }
 }

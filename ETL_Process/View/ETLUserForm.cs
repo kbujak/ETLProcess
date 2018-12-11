@@ -41,12 +41,14 @@ namespace ETL_Process
 
                 this.textArea.Text = "\r\nExtracting beers...";
                 await eTLControler.ExtractBeers();
-                this.textArea.Text = "\r\nNumber of exctracted beers: \r\n\r\n" + eTLControler.getAllBeers().Count;
+                this.textArea.Text += "\r\nNumber of exctracted beers: \r\n\r\n" + eTLControler.getAllBeers().Count;
 
-                this.textArea.Text = "\r\nExtracting comments...";
+                this.textArea.Text += "\r\n\r\n";
+
+                this.textArea.Text += "\r\nExtracting comments...";
                 await eTLControler.ExtractComments();
-                var numberOfComments = eTLControler.GetCommentResult().GuestComments.Count + eTLControler.GetCommentResult().UserComments.Count;
-                this.textArea.Text = "\r\nNumber of exctracted comments: \r\n\r\n" + numberOfComments;
+                var numberOfComments = eTLControler.GetCommentsCount();
+                this.textArea.Text += "\r\nNumber of exctracted comments: \r\n\r\n" + numberOfComments;
 
                 this.transformButton.Cursor = Cursors.Arrow;
                 this.transformButton.ForeColor = Color.Black;
@@ -115,7 +117,7 @@ namespace ETL_Process
                 await eTLControler.ExtractComments();
                 var numberOfComments = eTLControler.GetCommentResult().GuestComments.Count + eTLControler.GetCommentResult().UserComments.Count;
                 this.textArea.Text = "\r\nNumber of exctracted comments: \r\n\r\n" + numberOfComments;
-                if (eTLControler.Transform() && eTLControler.Load())
+                if (eTLControler.Transform().IsCompleted && eTLControler.Load())
                 {
                     this.textArea.Text = "\r\n\r\n... ETL process successfuly finished ...";
                 }

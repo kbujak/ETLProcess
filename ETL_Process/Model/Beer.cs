@@ -1,4 +1,6 @@
-﻿namespace ETL.Model
+﻿using System;
+
+namespace ETL.Model
 {
     public class Beer
     {
@@ -15,5 +17,7 @@
         public double Rating { get; set; }
 
         public string Url { get; set; }
+
+        public string BeerHash { get; set; }
     }    
 }
