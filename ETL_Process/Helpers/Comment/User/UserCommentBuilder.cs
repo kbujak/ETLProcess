@@ -25,7 +25,7 @@ namespace ETL.Helpers
             return this;
         }
 
-        public UserCommentBuilder WithRating(int rating)
+        public UserCommentBuilder WithRating(int? rating)
         {
             comment.Rating = rating;
             return this;

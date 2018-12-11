@@ -6,7 +6,7 @@ namespace ETL.Model
     {
         public string Username { get; set; }
 
-        public int Rating { get; set; }
+        public int? Rating { get; set; }
 
         public string Date { get; set; }
 

@@ -43,8 +43,7 @@ namespace ETL_Process.Controler
         {
             //something breaks on later beers
             //TO DO fix it xd
-            var firstTwoBeers = new List<Beer> { Beers.ElementAt(0), Beers.ElementAt(1) };
-            commentWebsiteCrawler.beerList = firstTwoBeers; //commentWebsiteCrawler.beerList = Beers; - to check if it is working
+            commentWebsiteCrawler.beerList = Beers; //commentWebsiteCrawler.beerList = Beers; - to check if it is working
             await commentWebsiteCrawler.startCrawlerAsync();
             DatabaseHelper.saveCommentsToDatabase(commentWebsiteCrawler.GetCommentResults());
             //this.CommentResult = commentWebsiteCrawler.GetCommentResults(); //this should be in transform/loads

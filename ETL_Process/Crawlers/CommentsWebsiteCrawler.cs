@@ -80,10 +80,12 @@ namespace ETL
 
             foreach (var node in nodes)
             {
+               
                 if (IsComment(node))
                 {
                     if (IsGuestComment(node))
                     {
+
                         var guestComment = guestCommentMapper.MapFromHTMLNode(node);
                         guestComment.BeerHash = beerHash;
                         guestComments.Add(guestComment);
@@ -94,6 +96,7 @@ namespace ETL
                         var userComment = userCommentMapper.MapFromHTMLNode(node);
                         userComment.BeerHash = beerHash;
                         userComments.Add(userComment);
+
                     }
                 }
             }
