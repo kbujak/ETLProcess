@@ -18,6 +18,6 @@ namespace ETL.Model
 
         public string Url { get; set; }
 
-        public string BeerHash { get; set; }
+        public Int32 BeerHash { get; set; }
     }    
 }

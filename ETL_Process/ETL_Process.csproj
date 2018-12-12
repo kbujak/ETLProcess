@@ -73,6 +73,7 @@
     <Compile Include="Crawlers\BeerRankingWebsiteCrawler.cs" />
     <Compile Include="Crawlers\CommentsWebsiteCrawler.cs" />
     <Compile Include="Csv\BeerCsvWriter.cs" />
+    <Compile Include="Helpers\HashGenerator.cs" />
     <Compile Include="Helpers\Database\DatabaseHelper.cs" />
     <Compile Include="View\ETLUserForm.cs">
       <SubType>Form</SubType>

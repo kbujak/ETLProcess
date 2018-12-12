@@ -4,6 +4,8 @@ namespace ETL.Model
 {
     public class UserComment
     {
+        public Int32 UserId { get; set; }
+
         public string Username { get; set; }
 
         public int? Rating { get; set; }
@@ -12,7 +14,7 @@ namespace ETL.Model
 
         public string Opinion { get; set; }
 
-        public string BeerHash { get; set; }
+        public Int32 BeerHash { get; set; }
 
     }
 }

@@ -67,7 +67,7 @@ namespace ETL
                .Descendants("tr").ToList();
         }
 
-        private async Task GetComments(string url, string beerHash)
+        private async Task GetComments(string url, Int32 beerHash)
         {
             var httpClient = new HttpClient();
             var htmlDocument = new HtmlDocument();

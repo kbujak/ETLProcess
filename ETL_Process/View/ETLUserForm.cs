@@ -55,7 +55,7 @@ namespace ETL_Process
                 this.transformButton.ForeColor = Color.Black;
                 this.transformButton.Enabled = true;
             }
-            catch
+            catch(Exception ex)
             {
                 MessageBox.Show("Error occured during data extracting process.", "Error!",
                                  MessageBoxButtons.OKCancel,
@@ -73,7 +73,7 @@ namespace ETL_Process
                 this.loadButton.ForeColor = Color.Black;
                 this.loadButton.Enabled = true;
             }
-            catch
+            catch (Exception ex)
             {
                 MessageBox.Show("Error occured during data transforming process.", "Error!",
                                   MessageBoxButtons.OKCancel,
@@ -96,7 +96,7 @@ namespace ETL_Process
                 this.extractButton.ForeColor = Color.Black;
 
             }
-            catch
+            catch (Exception ex)
             {
                 MessageBox.Show("Error occured during data loading process.", "Error!",
                                   MessageBoxButtons.OKCancel,

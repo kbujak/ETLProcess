@@ -31,33 +31,46 @@ namespace ETL_Process.Controler
         //extract raw data
         internal async 
         Task ExtractBeers()
-        { 
+        {
             var m = new BeerRankingWebsiteCrawler();
             await m.startCrawlerAsync();
             this.Beers = m.beerList;
-            DatabaseHelper.saveBeersToDB(this.Beers);
         }
 
         internal async
         Task ExtractComments()
         {
-            //something breaks on later beers
-            //TO DO fix it xd
-            commentWebsiteCrawler.beerList = Beers; //commentWebsiteCrawler.beerList = Beers; - to check if it is working
+            commentWebsiteCrawler.beerList = Beers;
             await commentWebsiteCrawler.startCrawlerAsync();
-            DatabaseHelper.saveCommentsToDatabase(commentWebsiteCrawler.GetCommentResults());
-            this.CommentResult = commentWebsiteCrawler.GetCommentResults(); //this should be in transform/loads
+            this.CommentResult = commentWebsiteCrawler.GetCommentResults();
         }
 
         //transform data to objects 
         internal async Task Transform()
         {
-            //Console.WriteLine(commentWebsiteCrawler.GetCommentResults().GuestComments.Count); //moved to Load
+            foreach (var beer in Beers)
+            {
+                beer.BeerHash = HashGenerator.GetEncodedHash(beer.Name);
+            }
+
+            foreach (var userComment in CommentResult.UserComments)
+            {
+                userComment.UserId = HashGenerator.GetEncodedHash(userComment.Username +  userComment.Date);
+            }
+
+            foreach (var guestComment in CommentResult.GuestComments)
+            {
+                guestComment.GuestId = HashGenerator.GetEncodedHash(guestComment.Date);
+            }
+
+
         }
 
         //save data to DB
         internal bool Load()
         {
+            DatabaseHelper.saveBeersToDB(getAllBeers());
+            DatabaseHelper.saveCommentsToDatabase(GetCommentResult());
             Console.WriteLine(commentWebsiteCrawler.GetCommentResults().GuestComments.Count); 
             return true;
         }
